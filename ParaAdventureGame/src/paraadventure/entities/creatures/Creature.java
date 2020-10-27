@@ -2,6 +2,7 @@ package paraadventure.entities.creatures;
 
 import paraadventure.Handler;
 import paraadventure.entities.Entity;
+import paraadventure.gfx.Animation;
 import paraadventure.tiles.Tile;
 
 public abstract class Creature extends Entity {
@@ -14,6 +15,9 @@ public abstract class Creature extends Entity {
 	
 	protected float speed;
 	protected float xMove, yMove;
+
+	//Animations
+	protected Animation animDown , animUp, animLeft , animRight;
 
 	public Creature(Handler handler, float x, float y, int width, int height) {
 		super(handler, x, y, width, height);

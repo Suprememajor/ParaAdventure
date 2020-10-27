@@ -11,7 +11,7 @@ import paraadventure.worlds.World;
 
 /**
  *
- * @author ngan
+ * @author Suprememajor
  */
 public class GameState extends State {
     

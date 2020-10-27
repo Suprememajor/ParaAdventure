@@ -41,9 +41,6 @@ public class Inventory {
         this.handler = handler;
         inventoryItems = new ArrayList<>();
         
-        addItem(Item.rockItem.createNew(5));
-        addItem(Item.woodItem.createNew(7));
-        
     }
     public void tick(){
         if(handler.getKeyManager().keyJustPressed(KeyEvent.VK_E))
