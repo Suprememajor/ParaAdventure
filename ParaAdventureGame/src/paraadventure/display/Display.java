@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 
 /**
  *
- * @author ngan
+ * @author Suprememajor
  */
 public class Display {
     private JFrame frame;

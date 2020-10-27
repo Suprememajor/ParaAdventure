@@ -10,16 +10,17 @@ import java.awt.image.BufferedImage;
 
 /**
  *
- * @author ngan
+ * @author Suprememajor
  */
 public class Tile {
     //STATIC STUFF HERE
     
     public static Tile[] tiles  = new Tile[256];
-    public static Tile grassTile = new GrassTile(0);
-    public static Tile dirtTile = new DirtTile(1);
-    public static Tile rockTile = new RockTile(2);
-    
+    public static Tile grassHillTile = new grassHill(1);
+    public static Tile grass = new Grass(0);
+    public static Tile mountainTile = new Mountain(2);
+    public static Tile clayMountainTile = new Mountain(3);
+
     //CLASS
     public static final int TILEWIDTH = 32, TILEHEIGHT = 32;
     

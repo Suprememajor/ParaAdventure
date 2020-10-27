@@ -14,7 +14,7 @@ import paraadventure.ui.UIManager;
 
 /**
  *
- * @author ngan
+ * @author Suprememajor
  */
 public class MenuState extends State{
     private UIManager uiManager;
@@ -24,13 +24,13 @@ public class MenuState extends State{
         uiManager = new UIManager(handler);
          handler.getMouseManager().setUiManager(uiManager);
         
-        uiManager.addObject(new UIImageButton(200,200,164,82,Assets.btn_start,new ClickListener() {
+        /*uiManager.addObject(new UIImageButton(200,200,164,82,Assets.btn_start,new ClickListener() {
             @Override
             public void onClick() {
                 handler.getMouseManager().setUiManager(uiManager);
                 State.setCurrentState(handler.getGame().gameState);
             }
-        }));
+        }));*/
        
      }
 

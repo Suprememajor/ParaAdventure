@@ -11,7 +11,7 @@ import paraadventure.Handler;
 
 /**
  *
- * @author ngan
+ * @author Suprememajor
  */
 public abstract class State {
     protected Handler handler;

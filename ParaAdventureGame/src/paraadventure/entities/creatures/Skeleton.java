@@ -17,15 +17,13 @@ import paraadventure.gfx.Assets;
  *
  * @author Suprememajor
  */
-public class Zombie extends Creature {
-    //Animations
-    private Animation animDown , animUp, animLeft , animRight;
+public class Skeleton extends Creature {
     //movementTimer
     private long lastMovementTimer, movementCooldown = 1000000 , movementTimer = movementCooldown;
     
     private Random rand = new Random();
 
-    public Zombie(Handler handler, float x, float y) {
+    public Skeleton(Handler handler, float x, float y) {
         super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
         
         bounds.x = 11;
@@ -37,10 +35,10 @@ public class Zombie extends Creature {
         yMove = speed;
         
         //Animations
-        animDown = new Animation(500,Assets.zombie_down );
-        animUp = new Animation(500,Assets.zombie_up );
-        animLeft = new Animation(500,Assets.zombie_left );
-        animRight = new Animation(500,Assets.zombie_right );
+        animDown = new Animation(500,Assets.skeletonDown);
+        animUp = new Animation(500,Assets.skeletonUp);
+        animLeft = new Animation(500,Assets.skeletonLeft);
+        animRight = new Animation(500,Assets.skeletonRight);
     }
 
     @Override

@@ -14,10 +14,7 @@ import paraadventure.gfx.Animation;
 import paraadventure.gfx.Assets;
 import paraadventure.inventory.Inventory;
 
-/**
- *
- * @author ngan
- */
+
 public class Player extends Creature {
     
     //Animations
@@ -26,6 +23,14 @@ public class Player extends Creature {
     private long lastAttackTimer, attackCooldown = 800 , attackTimer = attackCooldown;
     //Inventory
     private Inventory inventory;
+    //Direction
+    private Direction direction = Direction.Down;
+    //Standing Image
+    private BufferedImage[] standing = new BufferedImage[4];
+
+    public enum Direction{
+        Up, Down, Left, Right
+    }//provide current direction of player
     
     public Player(Handler handler, float x, float y) {
         super(handler,x, y, Creature.DEFAULT_CREATURE_WIDTH, Creature.DEFAULT_CREATURE_HEIGHT);
@@ -36,11 +41,17 @@ public class Player extends Creature {
         bounds.width = 10;
         
         //Animations
-        animDown = new Animation(500,Assets.player_down );
-        animUp = new Animation(500,Assets.player_up );
-        animLeft = new Animation(500,Assets.player_left );
-        animRight = new Animation(500,Assets.player_right );
-        
+        animDown = new Animation(500,Assets.playerDown);
+        animUp = new Animation(500,Assets.playerUp);
+        animLeft = new Animation(500,Assets.playerLeft);
+        animRight = new Animation(500,Assets.playerRight);
+
+        //standing images
+        standing[0] = Assets.playerUp[1];
+        standing[1] = Assets.playerRight[1];
+        standing[2] = Assets.playerDown[1];
+        standing[3] = Assets.playerLeft[1];
+
         inventory = new Inventory(handler);
         
     }
@@ -74,21 +85,26 @@ public class Player extends Creature {
         int arSize = 20;
         ar.height  = arSize;
         ar.width  = arSize;
-        
-        if(handler.getKeyManager().aUp){
-            ar.x =cb.x + cb.width / 2 - arSize / 2;
-            ar.y = cb.y - arSize;
-        }else if(handler.getKeyManager().aDown){
-            ar.x =cb.x + cb.width / 2 - arSize / 2;
-            ar.y = cb.y + cb.height;
-        }else if(handler.getKeyManager().aLeft){
-            ar.x =cb.x - arSize;
-            ar.y = cb.y - cb.height / 2 - arSize /2;
-        }else if(handler.getKeyManager().aRight){
-            ar.x =cb.x + cb.width;
-            ar.y = cb.y - cb.height / 2 - arSize /2;
-        }else{
-            return;
+
+        if(handler.getKeyManager().attack){
+            switch (direction){
+                case Down:
+                    ar.x =cb.x + cb.width / 2 - arSize / 2;
+                    ar.y = cb.y + cb.height;
+                    break;
+                case Up:
+                    ar.x =cb.x + cb.width / 2 - arSize / 2;
+                    ar.y = cb.y - arSize;
+                    break;
+                case Left:
+                    ar.x =cb.x - arSize;
+                    ar.y = cb.y - cb.height / 2 - arSize /2;
+                    break;
+                case Right:
+                    ar.x =cb.x + cb.width;
+                    ar.y = cb.y - cb.height / 2 - arSize /2;
+                    break;
+            }
         }
         
         attackTimer = 0;
@@ -104,6 +120,10 @@ public class Player extends Creature {
         }
     }
 
+    /**
+     * receives user input and aids in moving player
+     */
+
     private void getInput(){
         if(inventory.isActive())
             return;
@@ -111,14 +131,20 @@ public class Player extends Creature {
         xMove = 0;
         yMove = 0;
         
-        if(handler.getKeyManager().up)
+        if(handler.getKeyManager().up){
             yMove= -speed;
-        if(handler.getKeyManager().down)
+            direction = Direction.Up;
+        }else if(handler.getKeyManager().down){
             yMove= speed;
-        if(handler.getKeyManager().left)
+            direction = Direction.Down;
+        }
+        if(handler.getKeyManager().left){
             xMove= -speed;
-        if(handler.getKeyManager().right)
+            direction = Direction.Left;
+        }else if(handler.getKeyManager().right){
             xMove= +speed;
+            direction = Direction.Right;
+        }
     }
     @Override
     public void die(){
@@ -144,9 +170,21 @@ public class Player extends Creature {
             return animRight.getCurrentFrame();
         }else if(yMove < 0){
             return animUp.getCurrentFrame();
-        }else{
+        }else if(yMove > 0){
             return animDown.getCurrentFrame();
+        }else{
+            switch (direction){
+                case Down:
+                    return standing[2];
+                case Up:
+                    return standing[0];
+                case Left:
+                    return standing[3];
+                case Right:
+                    return standing[1];
+            }
         }
+        return null;
     }
 
     public Inventory getInventory() {

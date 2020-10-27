@@ -9,15 +9,12 @@ import paraadventure.gfx.Assets;
 
 /**
  *
- * @author ngan
+ * @author Suprememajor
  */
-public class RockTile extends Tile{
+public class ClayMountain extends Tile{
     
-    public RockTile(int id) {
-        super(Assets.stone, id);
+    public ClayMountain(int id) {
+        super(Assets.clayMountain, id);
     }
-    @Override
-    public boolean isSolid(){
-        return true;
-    }
+    
 }

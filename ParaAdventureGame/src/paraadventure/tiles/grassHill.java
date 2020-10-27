@@ -9,12 +9,12 @@ import paraadventure.gfx.Assets;
 
 /**
  *
- * @author ngan
+ * @author Suprememajor
  */
-public class GrassTile extends Tile{
+public class grassHill extends Tile{
     
-    public GrassTile(int id) {
-        super(Assets.grass, id);
+    public grassHill(int id) {
+        super(Assets.grassHill, id);
     }
     
 }

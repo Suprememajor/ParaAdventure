@@ -13,7 +13,7 @@ public class Launcher {
      */
     public static void main(String[] args) {
 
-        Game game = new Game("Tile Game",600,450);
+        Game game = new Game("ParaAdventure",600,450);
         game.start();
         // TODO code application logic here
     }

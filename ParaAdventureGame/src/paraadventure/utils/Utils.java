@@ -11,7 +11,7 @@ import java.io.IOException;
 
 /**
  *
- * @author ngan
+ * @author Suprememajor
  */
 public class Utils {
     public static String loadFileAsString(String path){

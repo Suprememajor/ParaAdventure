@@ -19,8 +19,8 @@ import paraadventure.gfx.Assets;
 public class Item {
     //HANDLER
     public static Item[] items = new Item[256];
-    public static Item woodItem = new Item(Assets.wood, "Wood" , 0 );
-    public static Item rockItem = new Item(Assets.rock, "Rock" , 1 );
+    /*public static Item woodItem = new Item(Assets.wood, "Wood" , 0 );
+    public static Item rockItem = new Item(Assets.rock, "Rock" , 1 );*/
     
     //CLASS
     public static final int ITEMWIDTH = 16, ITEMHEIGHT = 16 ;

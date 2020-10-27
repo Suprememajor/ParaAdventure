@@ -11,7 +11,7 @@ import paraadventure.Handler ;
 
 /**
  *
- * @author ngan
+ * @author Suprememajor
  */
 public abstract class Entity {
     public static final int DEFAULT_HEALTH = 3;

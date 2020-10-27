@@ -18,14 +18,12 @@ import paraadventure.states.State;
      * @author Suprememajor
      */
     public class Game implements Runnable {
-        private Display display;
+        private Display display; //Game display
         private int width,height;
         private String title;
-        private Thread thread;
-        private BufferStrategy bs;
-        private Graphics g;
-        private BufferedImage testImage;
-        private SpriteSheet sheet;
+        private Thread thread;//Game thread
+        private BufferStrategy bufferStrategy;
+        private Graphics graphics;
         private boolean running = false;
 
         //States
@@ -40,7 +38,7 @@ import paraadventure.states.State;
         private GameCamera gameCamera;
 
         //Handler
-        private Handler handler;
+        private Handler handler;//Links all parts of the game together
 
         public Game(String title, int width, int height){
             this.height = height;
@@ -62,8 +60,6 @@ import paraadventure.states.State;
             gameCamera = new GameCamera(handler,0,0);
 
 
-            //testImage = ImageLoader.loadImage("/textures/test3.png");
-            //sheet = new SpriteSheet(testImage);
             gameState =  new GameState(handler);
             menuState = new MenuState(handler);
             State.setCurrentState(menuState);
@@ -140,19 +136,19 @@ import paraadventure.states.State;
         }
 
         private void render() {
-            bs = display.getCanvas().getBufferStrategy();
-            if(bs == null){
+            bufferStrategy = display.getCanvas().getBufferStrategy();
+            if(bufferStrategy == null){
                 display.getCanvas().createBufferStrategy(3);
                 return;
             }
-            g = bs.getDrawGraphics();
+            graphics = bufferStrategy.getDrawGraphics();
 
-            g.clearRect(0, 0, width, height);
+            graphics.clearRect(0, 0, width, height);
        /*g.drawImage(Assets.player, x, 20, null);
        g.drawImage(Assets.grass, x+2, x, null);*/
-            State.getCurrentState().render(g);
-            bs.show();
-            g.dispose();
+            State.getCurrentState().render(graphics);
+            bufferStrategy.show();
+            graphics.dispose();
         }
         public static int clamp(int val,int min,int max){
             if(val > max)

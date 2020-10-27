@@ -9,9 +9,7 @@ import java.awt.Graphics;
 import paraadventure.Handler;
 import paraadventure.entities.EntityManager;
 import paraadventure.entities.creatures.Player;
-import paraadventure.entities.creatures.Zombie;
-import paraadventure.entities.statics.Rock;
-import paraadventure.entities.statics.Tree;
+import paraadventure.entities.creatures.Skeleton;
 import paraadventure.items.ItemManager;
 import paraadventure.tiles.Tile;
 import paraadventure.utils.Utils;
@@ -33,11 +31,8 @@ public class World {
         
         entityManager = new EntityManager(handler , new Player(handler,100,20));
         itemManager = new ItemManager(handler);
-        entityManager.addEntity(new Tree(handler, 320, 300));
-        entityManager.addEntity(new Tree(handler, 320, 400));
-        entityManager.addEntity(new Rock(handler, 220, 420));
-        entityManager.addEntity(new Zombie(handler, 340, 400));
-        entityManager.addEntity(new Zombie(handler, 220, 350));
+        entityManager.addEntity(new Skeleton(handler, 340, 400));
+        entityManager.addEntity(new Skeleton(handler, 220, 350));
         
         loadWorld(path);
         entityManager.getPlayer().setX(spawnX);
@@ -67,11 +62,11 @@ public class World {
     public Tile getTile(int x, int y){
         
         if(x < 0 || y < 0 || x > width || y > height )
-            return Tile.grassTile;
+            return Tile.grassHillTile;
         
         Tile t = Tile.tiles[tiles[x][y]];
         if(t==null)
-            return Tile.dirtTile;
+            return Tile.clayMountainTile;
         return t;
     }
     
